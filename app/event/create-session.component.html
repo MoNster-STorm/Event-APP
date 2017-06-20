@@ -1,0 +1,42 @@
+<div class="col-md-6">
+  <form [formGroup]="sessionForm" (ngSubmit) = "saveSession(sessionForm.value)" autocomplete="off">
+    <div class="form-group">
+      <label for="sessionName">Session Name:</label>
+      <em *ngIf="sessionForm.controls.sessionName?.invalid && sessionForm.controls.sessionName?.touched">Required</em>
+      <input formControlName = "name" id="sessionName" type="text" class="form-control" required placeholder="session name..." />
+    </div>
+    <div class="form-group">
+      <label for="eventDate">Presenter:</label>
+      <em *ngIf="sessionForm.controls.presenter?.invalid && sessionForm.controls.presenter.touched">Required</em>
+      <input formControlName = "presenter" id="presenter" type="text" class="form-control" required placeholder="presenter..." />
+    </div>
+    <div class="form-group">
+      <label for="duration">Duration:</label>
+      <em *ngIf="sessionForm.controls.duration?.invalid && sessionForm.controls.duration.touched">Required</em>
+      <select formControlName = "duration" class="form-control" required>
+        <option value="">select duration...</option>
+        <option value="1">Half Hour</option>
+        <option value="2">1 Hour</option>
+        <option value="3">Half Day</option>
+        <option value="4">Full Day</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="level">Level:</label>
+      <em *ngIf="sessionForm.controls.level?.invalid && sessionForm.controls.level.touched">Required</em>
+      <select formControlName = "level" class="form-control" required>
+        <option value="">select level...</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="abstract">Abstract:</label>
+      <em *ngIf="sessionForm.controls.abstract?.invalid && sessionForm.controls.abstract.errors.touched">Required</em>
+      <textarea formControlName="abstract" id="abstract"  required rows=3 class="form-control" placeholder="abstract..."></textarea>
+    </div>
+    <button type="submit" [disabled] = "sessionForm.invalid" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-default" (click) = "cancel()">Cancel</button>
+  </form>
+</div>
